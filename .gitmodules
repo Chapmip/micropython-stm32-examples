@@ -1,0 +1,3 @@
+[submodule "micropython-stm32-iol"]
+	path = micropython-stm32-iol
+	url = https://github.com/Chapmip/micropython-stm32-iol
