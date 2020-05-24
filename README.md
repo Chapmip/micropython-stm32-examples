@@ -4,9 +4,9 @@
 
 ### General description of example code
 
-* Examples inspired by Udemy ARM Cortex course: *"Embedded Systems Bare-Metal Programming Ground Up™ (STM32)"* -- see references below.
+* Examples inspired by Udemy ARM Cortex course: *"Embedded Systems Bare-Metal Programming Ground Up™ (STM32)"* — see references below.
 
-* Draws on low-level I/O class module (iol.py) for "bare-metal" access to STM32 memory locations and device registers -- see references below.
+* Draws on low-level I/O class module (iol.py) for "bare-metal" access to STM32 memory locations and device registers — see references below.
 
 * Created on a Pyboard (PYB) v1.1 (with STM32F405RGT6 microcontroller) but should be readily adaptable to other Micropython systems.
 
