@@ -43,7 +43,7 @@ To add the example code modules to the Pyboard, copy them (together with the `io
 
 In general, the reset button should be used as a last resort for a "cold start" of the Pyboard ⁠— for example, if the REPL environment has crashed.  In most other cases, it is adequate to perform a "warm start" by issuing a `<CONTROL-D>` on a blank line of the REPL prompt.
 
-![Running example code via Chrome OS Serial Terminal](/photos/Running%20example%20code%20via%20Chrome%20OS%20Serial%20Terminal.png?raw=true "Running example code via Chrome OS Serial Terminal")
+### Adding external components to Pyboard
 
 I was able to add all of the necessary external components for my experiments by connecting a breadboard to the Pyboard through jumper wires (both readily obtainable from various suppliers for experiments with Pyboards, Arduino controllers etc), as per the photo below:
 
