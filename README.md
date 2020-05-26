@@ -2,7 +2,7 @@
 
 **Note: This document is currently being created and so is not yet suitable for reference.**
 
-## Quick summary
+# Quick summary
 
 * Examples inspired by Udemy ARM Cortex course: *"Embedded Systems Bare-Metal Programming Ground Up™ (STM32)"* — see references below
 
@@ -10,7 +10,7 @@
 
 * Created on a Pyboard (PYB) v1.1 (with STM32F405RGT6 microcontroller) but should be readily adaptable to other Micropython systems
 
-## History
+# History
 
 I created the `iol.py` module when I wanted to experiment with "bare metal" access to STM32 peripheral registers on a Pyboard v1.1.  I had obtained the Udemy course [*"Embedded Systems Bare-Metal Programming Ground Up™ (STM32)"*](https://www.udemy.com/course/embedded-systems-bare-metal-programming/) but was unable to use the examples directly as I didn't have a Windows PC on which to run the required Keil uVision environment.  I therefore chose to create classes to simulate "bare metal" access in Micropython rather than C.
 
@@ -20,7 +20,7 @@ Inevitably, code written in Micropython will run considerably slower than C code
 
 The master repository for my `iol.py` module (included here as a sub-module) can be found [here](https://github.com/Chapmip/micropython-stm32-iol).
 
-## Getting started
+# Getting started
 
 When plugged into the USB port of a computer (using a Micro-USB B to USB A lead), the Pyboard is configured to appear as  both:
 
@@ -49,7 +49,7 @@ I was able to add all of the necessary external components for my experiments by
 
 ![Pyboard v1.1 with external components on breadboard](/photos/Pyboard%20v1.1%20with%20external%20components%20on%20breadboard.png?raw=true "Pyboard v1.1 with external components on breadboard")
 
-## Example code
+# Example code
 
 * [`clocks.py`](/clocks.py)
 * [`c3.py`](/c3.py)
@@ -60,7 +60,7 @@ I was able to add all of the necessary external components for my experiments by
 * [`c9.py`](/c9.py)
 * [`c10.py`](/c10.py)
 
-## References
+# References
 
 * [Udemy course: *"Embedded Systems Bare-Metal Programming Ground Up™ (STM32)"*](https://www.udemy.com/course/embedded-systems-bare-metal-programming/)
 * [STM32F405 Data Sheet](https://www.st.com/resource/en/datasheet/dm00037051.pdf)
