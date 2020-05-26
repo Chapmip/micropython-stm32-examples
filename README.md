@@ -18,7 +18,7 @@ I wasn't sure whether the Micropython system footprint would get in the way of "
 
 Inevitably, code written in Micropython will run considerably slower than C code.  I only found this to be a problem, though, during one experiment with the SPI bus, in which Micropython code is unable to keep up with the high speed of the bus (up to 21 MHz).  Even in this case, I was able to work around this limitation by re-writing the critical section of code using inline assembler code.
 
-The master repository for my `iol.py` module (included here as a sub-moduler) can be found [here](https://github.com/Chapmip/micropython-stm32-iol).
+The master repository for my `iol.py` module (included here as a sub-module) can be found [here](https://github.com/Chapmip/micropython-stm32-iol).
 
 ### Getting started
 
@@ -32,7 +32,7 @@ On the Chromebook, I found that the Pyboard filesystem appeared automatically in
 
 ![Chrome OS Serial Terminal settings for Pyboard](/photos/Chrome%20OS%20Serial%20Terminal%20settings%20for%20Pyboard.png?raw=true "Chrome OS Serial Terminal settings for Pyboard")
 
-To add the example code modules to the Pyboard, copy them (together with the `iol.py` module) from the computer into the top folder of the Pyboard filesystem, along with the .  From the REPL environment, the example modules can then be brought into operation by issuing an `import cX` instruction (where X=course number), as shown below:
+To add the example code modules to the Pyboard, copy them (together with the `iol.py` module) from the computer into the top folder of the Pyboard filesystem, along with the .  From the REPL environment, the example modules can then be brought into operation by issuing an `import cX` instruction (where X=course number), as illustrated below:
 
 ![Running example code via Chrome OS Serial Terminal](/photos/Running%20example%20code%20via%20Chrome%20OS%20Serial%20Terminal.png?raw=true "Running example code via Chrome OS Serial Terminal")
 
@@ -69,4 +69,4 @@ I was able to add all of the necessary external components for my experiments by
 * [MicroPython documentation](https://docs.micropython.org/en/latest/)
 * [Pyboard v1.1 documentation](https://docs.micropython.org/en/latest/pyboard/quickref.html)
 * [Serial Term for Chrome OS (by Ganehag)](https://chrome.google.com/webstore/detail/serial-term/fnjkimblohniildfepjhejeppenokhie)
-* [My `iol.py` module (GitHub)](https://github.com/Chapmip/micropython-stm32-iol)
+* [Master repository for `iol.py` module](https://github.com/Chapmip/micropython-stm32-iol)
