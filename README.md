@@ -1,8 +1,8 @@
-# Work in progress...
+# Example code using `iol.py` module
 
-**This document is currently being created and so is not yet suitable for reference.**
+**Note: This document is currently being created and so is not yet suitable for reference.**
 
-### Quick summary of example code
+### Quick summary
 
 * Examples inspired by Udemy ARM Cortex course: *"Embedded Systems Bare-Metal Programming Ground Up™ (STM32)"* — see references below
 
@@ -16,13 +16,13 @@ I created the `iol.py` module when I wanted to experiment with "bare metal" acce
 
 I wasn't sure whether the Micropython system footprint would get in the way of "bare metal" accesses to device registers, but I didn't find this generally to be the case.  In most cases, I have been able to work around issues of contention by reading carefully the Micropython documentation and avoiding a few on-chip peripheral functions that are dedicated to Micropython.
 
-Inevitably, code written in Micropython will run considerably slower than C code.  I only found this to be a problem, though, during one experiment with the SPI bus, in which Micropython code is unable to keep up with the high speed of the bus (can be up to 21 MHz!).  Even in this case, I was able to work around this limitation by re-writing the critical section of code using inline assembler code.
+Inevitably, code written in Micropython will run considerably slower than C code.  I only found this to be a problem, though, during one experiment with the SPI bus, in which Micropython code is unable to keep up with the high speed of the bus (up to 21 MHz).  Even in this case, I was able to work around this limitation by re-writing the critical section of code using inline assembler code.
 
-The `iol.py` module (included here in a sub-folder) can also be found in my separate repository [here](https://github.com/Chapmip/micropython-stm32-iol).
+The master repository for my `iol.py` module (included here as a sub-moduler) can be found [here](https://github.com/Chapmip/micropython-stm32-iol).
 
 ### Getting started
 
-When plugged into the USB port of a computer (using a Micro USB B to USB A lead), the Pyboard is configured to appear as  both:
+When plugged into the USB port of a computer (using a Micro-USB B to USB A lead), the Pyboard is configured to appear as  both:
 
 * An **MSC (Mass Storage Class) device** ⁠— for mounting into the filesystem of the computer as a dedicated drive showing the files in the flash memory of the Pyboard (either its inbuilt flash or an installed MicroSD card)
 
@@ -32,7 +32,7 @@ On the Chromebook, I found that the Pyboard filesystem appeared automatically in
 
 ![Chrome OS Serial Terminal settings for Pyboard](/photos/Chrome%20OS%20Serial%20Terminal%20settings%20for%20Pyboard.png?raw=true "Chrome OS Serial Terminal settings for Pyboard")
 
-To add the example code modules to the Pyboard, copy them (together with the `iol.py` module) from the computer into the top folder of the Pyboard filesystem, along with the .  From the REPL environment, the example modules can then be brought into operation by issuing an `import cX` instruction, as shown below:
+To add the example code modules to the Pyboard, copy them (together with the `iol.py` module) from the computer into the top folder of the Pyboard filesystem, along with the .  From the REPL environment, the example modules can then be brought into operation by issuing an `import cX` instruction (where X=course number), as shown below:
 
 ![Running example code via Chrome OS Serial Terminal](/photos/Running%20example%20code%20via%20Chrome%20OS%20Serial%20Terminal.png?raw=true "Running example code via Chrome OS Serial Terminal")
 
@@ -49,17 +49,6 @@ I was able to add all of the necessary external components for my experiments by
 
 ![Pyboard v1.1 with external components on breadboard](/photos/Pyboard%20v1.1%20with%20external%20components%20on%20breadboard.png?raw=true "Pyboard v1.1 with external components on breadboard")
 
-### References
-
-* [Udemy course: *"Embedded Systems Bare-Metal Programming Ground Up™ (STM32)"*](https://www.udemy.com/course/embedded-systems-bare-metal-programming/)
-* [STM32F405 Data Sheet](https://www.st.com/resource/en/datasheet/dm00037051.pdf)
-* [STM32F405 Reference Manual](https://www.st.com/resource/en/reference_manual/dm00031020-stm32f405-415-stm32f407-417-stm32f427-437-and-stm32f429-439-advanced-arm-based-32-bit-mcus-stmicroelectronics.pdf)
-* [STM32 Cortex®-M4 Programming Manual](https://www.st.com/resource/en/programming_manual/dm00046982-stm32-cortexm4-mcus-and-mpus-programming-manual-stmicroelectronics.pdf)
-* [MicroPython documentation](https://docs.micropython.org/en/latest/)
-* [Pyboard v1.1 documentation](https://docs.micropython.org/en/latest/pyboard/quickref.html)
-* [Serial Term for Chrome OS (by Ganehag)](https://chrome.google.com/webstore/detail/serial-term/fnjkimblohniildfepjhejeppenokhie)
-* [My `iol.py` module (GitHub)](https://github.com/Chapmip/micropython-stm32-iol)
-
 ### Example code
 
 * [`clocks.py`](/clocks.py)
@@ -70,3 +59,14 @@ I was able to add all of the necessary external components for my experiments by
 * [`c7.py`](/c7.py)
 * [`c9.py`](/c9.py)
 * [`c10.py`](/c10.py)
+
+### References
+
+* [Udemy course: *"Embedded Systems Bare-Metal Programming Ground Up™ (STM32)"*](https://www.udemy.com/course/embedded-systems-bare-metal-programming/)
+* [STM32F405 Data Sheet](https://www.st.com/resource/en/datasheet/dm00037051.pdf)
+* [STM32F405 Reference Manual](https://www.st.com/resource/en/reference_manual/dm00031020-stm32f405-415-stm32f407-417-stm32f427-437-and-stm32f429-439-advanced-arm-based-32-bit-mcus-stmicroelectronics.pdf)
+* [STM32 Cortex®-M4 Programming Manual](https://www.st.com/resource/en/programming_manual/dm00046982-stm32-cortexm4-mcus-and-mpus-programming-manual-stmicroelectronics.pdf)
+* [MicroPython documentation](https://docs.micropython.org/en/latest/)
+* [Pyboard v1.1 documentation](https://docs.micropython.org/en/latest/pyboard/quickref.html)
+* [Serial Term for Chrome OS (by Ganehag)](https://chrome.google.com/webstore/detail/serial-term/fnjkimblohniildfepjhejeppenokhie)
+* [My `iol.py` module (GitHub)](https://github.com/Chapmip/micropython-stm32-iol)
