@@ -1,14 +1,30 @@
-﻿# Example code using `iol.py` module
+# Example code using `iol.py` module
 
-This is the user manual for the example code (modules and methods) that I am offering as immediately usable (on a Pyboard v1.1) examples of "bare-metal" access to STM32 peripheral registers using the `iol.py` module.
+This is the user manual for the example Micropython code (modules and methods) that I am offering as immediately usable (on a Pyboard v1.1) examples of "bare-metal" access to STM32 peripheral registers using the `iol.py` module.
 
 # Quick summary
 
-* Examples inspired by Udemy ARM Cortex course: *"Embedded Systems Bare-Metal Programming Ground Up™ (STM32)"* — see references below
+* Examples inspired by Udemy ARM Cortex course: *"Embedded Systems Bare-Metal Programming Ground Up™ (STM32)"* — see [References](https://github.com/Chapmip/micropython-stm32-examples#references)
 
-* Draws on low-level I/O class module (iol.py) for "bare-metal" access to STM32 memory locations and peripheral registers — see references below
+* Draws on low-level I/O class module (iol.py) for "bare-metal" access to STM32 memory locations and peripheral registers — see [References](https://github.com/Chapmip/micropython-stm32-examples#references)
 
 * Created on a Pyboard (PYB) v1.1 (with STM32F405RGT6 microcontroller) but should be readily adaptable to other Micropython systems
+
+# Quick Links
+
+* [History](https://github.com/Chapmip/micropython-stm32-examples#history)
+* [Getting started](https://github.com/Chapmip/micropython-stm32-examples#getting-started)
+* [Adding external components to Pyboard](https://github.com/Chapmip/micropython-stm32-examples#adding-external-components-to-pyboard)
+* [Example modules and external methods](https://github.com/Chapmip/micropython-stm32-examples#example-modules-and-external-methods)
+* [`clocks.py` — Calculate Pyboard clock frequencies](https://github.com/Chapmip/micropython-stm32-examples#clockspy--calculate-pyboard-clock-frequencies-from-first-principles)
+* [`c3.py` — General Purpose Input/Output (GPIO)](https://github.com/Chapmip/micropython-stm32-examples#c3py--general-purpose-inputoutput-gpio)
+* [`c4.py` — Universal Asychronous Receiver Transmitter (UART)](https://github.com/Chapmip/micropython-stm32-examples#c4py--universal-asychronous-receiver-transmitter-uart)
+* [`c5.py` — General Purpose Timers](https://github.com/Chapmip/micropython-stm32-examples#c5py--general-purpose-timers)
+* [`c6.py` — Interrupts](https://github.com/Chapmip/micropython-stm32-examples#c6py--interrupts)
+* [`c7.py` — Analog-to-Digital Converter (ADC)](https://github.com/Chapmip/micropython-stm32-examples#c7py--analog-to-digital-converter-adc)
+* [`c9.py` — Inter-Integrated Circuit (I2C) bus](https://github.com/Chapmip/micropython-stm32-examples#c9py--inter-integrated-circuit-i2c-bus)
+* [`c10.py` — Serial Peripheral Interface (SPI) bus](https://github.com/Chapmip/micropython-stm32-examples#c10py--serial-peripheral-interface-spi-bus)
+* [References](https://github.com/Chapmip/micropython-stm32-examples#references)
 
 # History
 
@@ -53,9 +69,11 @@ I was able to add all of the necessary external components for my experiments by
 
 The following modules and methods are offered as immediately usable (on a Pyboard v1.1) examples of "bare-metal" access to STM32 peripheral registers using the `iol.py` module.  The module numbering follows the relevant sections of the Udemy ARM Cortex course.
 
+The source code for each module can be viewed and downloaded by following the link in the heading of the appropriate section below.
+
 ## [`clocks.py`](/clocks.py) — Calculate Pyboard clock frequencies from first principles
 
-Calculate the Pyboard clock and bus frequencies from the external crystal value and the STM32 device register configuration settings, then compare these with the values reported by the system
+Calculate the Pyboard clock and bus frequencies from the external crystal value and the STM32 device register configuration settings, then compare these with the values reported by the system.
 
 To run this package (occurs automatically on `import`):
 
@@ -79,19 +97,19 @@ None ⁠— only uses in-built red LED and user button on Pyboard
 
 ### `c3.flash_basic()`
 
-Flash the red LED on and off five times by writing the ODR bit high then low
+Flash the red LED on and off five times by writing the ODR bit high then low.
 
 ### `c3.flash_simpler()`
 
-Flash the red LED on and off five times by toggling the ODR bit (exclusive-or)
+Flash the red LED on and off five times by toggling the ODR bit (exclusive-or).
 
 ### `c3.flash_bsrr()`
 
-Flash the red LED on and off five times using the BSRR registers to set and reset the I/O port bit
+Flash the red LED on and off five times using the BSRR registers to set and reset the I/O port bit.
 
 ### `c3.led_button()`
 
-Reflect the state of the user button on the red LED (pressed = on) in a continuous loop (interrupt with `<CONTROL-C>`)
+Reflect the state of the user button on the red LED (pressed = on) in a continuous loop (interrupt with `<CONTROL-C>`).
 
 ## [`c4.py`](/c4.py) — Universal Asychronous Receiver Transmitter (UART)
 
@@ -106,15 +124,15 @@ For `echo_test()` and `rx_test()` — "loop-back" connection from X1 (PA0) to X2
 
 ### `c4.echo_test()`
 
-Confirm the "loop-back" connection by toggling PA0 and displaying the state of PA1 each time
+Confirm the "loop-back" connection by toggling PA0 and displaying the state of PA1 each time.
 
 ### `c4.tx_test()`
 
-Send 5000 serial characters at 4800 baud over PA0, measuring the time taken (plus Micropython overheads) to confirm that the baud rate is in the expected range
+Send 5000 serial characters at 4800 baud over PA0, measuring the time taken (plus Micropython overheads) to confirm that the baud rate is in the expected range.
 
 ### `c4.rx_test()`
 
-Send 24 lines of alphanumeric characters serially at 4800 baud over PA0, displaying the serial characters received on PA1 (should echo the transmission)
+Send 24 lines of alphanumeric characters serially at 4800 baud over PA0, displaying the serial characters received on PA1 (should echo the transmission).
 
 ## [`c5.py`](/c5.py) — General Purpose Timers
 
@@ -129,7 +147,7 @@ For `timer_capture()` only — LED via series resistor (e.g. 330 ohm) to ground 
 
 ### `c5.timer_basic()`
 
-Set up Timer 2 to expire at 1.0 second intervals, toggling the state of the yellow LED manually when this happens, and measuring the total time taken for ten cycles
+Set up Timer 2 to expire at 1.0 second intervals, toggling the state of the yellow LED manually when this happens, and measuring the total time taken for ten cycles.
 
 ### `c5.timer_compare()`
 
@@ -137,11 +155,11 @@ Set up Timer 2 to run autonomously with a 1.0 second output compare period, with
 
 ### `c5.timer_capture()`
 
-Set up Timer 2 to run autonomously with a 1.0 second output compare period, with the compare match toggling the state of the external PA0 output automatically, and Timer 3 to run in input capture mode on the linked external input PC6, measuring the times at which changes occur and displaying the intervals
+Set up Timer 2 to run autonomously with a 1.0 second output compare period, with the compare match toggling the state of the external PA0 output automatically, and Timer 3 to run in input capture mode on the linked external input PC6, measuring the times at which changes occur and displaying the intervals.
 
 ### `c5.timer_pwm()`
 
-Sets up Timer 2 to provide a PWM output to the external PA0 output, varying the brightness of the external LED according to the inputted percentage value
+Sets up Timer 2 to provide a PWM output to the external PA0 output, varying the brightness of the external LED according to the inputted percentage value.
 
 ## [`c6.py`](/c6.py) — Interrupts
 
@@ -158,15 +176,15 @@ For `int_external()` and `int_timer()` — LED via series resistor (e.g. 330 ohm
 
 ### `c6.int_external()`
 
-Set up an interrupt callback handler (in Micropython) for high-to-low transitions on external input pin PC6, then control the state of PA0 in a loop according to the inputted 1/0 value, reporting the interrupt activity
+Set up an interrupt callback handler (in Micropython) for high-to-low transitions on external input pin PC6, then control the state of PA0 in a loop according to the inputted 1/0 value, reporting the interrupt activity.
 
 ### `c6.int_timer()`
 
-Set up an interrupt callback handler (in Micropython) for Timer 2 expiry, then display the updated interrupt count when the user inputs to request this
+Set up an interrupt callback handler (in Micropython) for Timer 2 expiry, then display the updated interrupt count when the user inputs to request this.
 
 ### `c6.int_uart()`
 
-Set up the UART 4 in Micropython, then prompt for activity over the serial port and report on the states of the STM32 peripheral registers associated with the UART (note: interrupt callback handlers are not available for UARTs in the STM32 version of Micropython)
+Set up the UART 4 in Micropython, then prompt for activity over the serial port and report on the states of the STM32 peripheral registers associated with the UART (note: interrupt callback handlers are not available for UARTs in the STM32 version of Micropython).
 
 ## [`c7.py`](/c7.py) — Analog-to-Digital Converter (ADC)
 
@@ -181,15 +199,15 @@ For `adc_basic()` only — 50k potentiometer (10k or 100k also okay) from +3.3V 
 
 ### `c7.adc_basic()`
 
-Set up ADC1 to read analogue values from the potentiometer on PA6 in a loop, converting the readings into percentage values calculated according to the configured ADC resolution (12 bits by default)
+Set up ADC1 to read analogue values from the potentiometer on PA6 in a loop, converting the readings into percentage values calculated according to the configured ADC resolution (12 bits by default).
 
 ### `c7.adc_temp()`
 
-Set up ADC1 to read the internal temperature reading from the CPU, then prompt a series of 10 readings in a loop at 1.0 second intervals, displaying the results converted to Celsius
+Set up ADC1 to read the internal temperature reading from the CPU, then prompt a series of 10 readings in a loop at 1.0 second intervals, displaying the results converted to Celsius.
 
 ### `c7.adc_auto()`
 
-Set up ADC1 to read the internal temperature reading from the CPU, then set up Timer 2 to trigger these readings automatically at 3.0 second intervals, displaying the results of 10 readings in a loop, converted to Celsius
+Set up ADC1 to read the internal temperature reading from the CPU, then set up Timer 2 to trigger these readings automatically at 3.0 second intervals, displaying the results of 10 readings in a loop, converted to Celsius.
 
 ## There is no `c8.py`!
 
@@ -210,21 +228,21 @@ For `i2c_test_ext()` only — Bosch BMP280 digital temperature and pressure sens
 
 Test the inbuilt accelerometer on the Pyboard using Micropython (pyb) I2C calls — NOT bare-metal methods!
 
-*Note: the accelerometer does not respond at all until powered from the PB5 output line, and then does not return valid readings until configured correctly*
+*Note: the accelerometer does not respond at all until powered from the PB5 output line, and then does not return valid readings until configured correctly.*
 
 ### `c9.i2c_test_int()`
 
-Read from the internal I2C accelerometer on the Pyboard using a stack of bare-metal methods addressing the STM32 I2C1 peripheral block
+Read from the internal I2C accelerometer on the Pyboard using a stack of bare-metal methods addressing the STM32 I2C1 peripheral block.
 
 ### `c9.i2c_scan()`
 
-Scan for any active I2C devices on the bus using a stack of bare-metal methods addressing the STM32 I2C1 peripheral block, reporting the addresses polled and any acknowledgements received
+Scan for any active I2C devices on the bus using a stack of bare-metal methods addressing the STM32 I2C1 peripheral block, reporting the addresses polled and any acknowledgements received.
 
 ### `c9.i2c_test_ext()`
 
-Read from the external Bosch BMP280 digital temperature and pressure sensor over the I2C bus using a stack of bare-metal methods addressing the STM32 I2C1 peripheral block
+Read from the external Bosch BMP280 digital temperature and pressure sensor over the I2C bus using a stack of bare-metal methods addressing the STM32 I2C1 peripheral block.
 
-*Note: the calculation of temperature and pressure from the raw readings is a complex computation that needs to take into account the calibration values that are pre-programmed into the device, so this procedure is not implemented and raw readings only are returned*
+*Note: the calculation of temperature and pressure from the raw readings is a complex computation that needs to take into account the calibration values that are pre-programmed into the device, so this procedure is not implemented and raw readings only are returned.*
 
 ## [`c10.py`](/c10.py) — Serial Peripheral Interface (SPI) bus
 
@@ -243,9 +261,9 @@ Use short connection wires (e.g. 10cm), especially if running the SPI bus close 
 
 ### `c10.spi_test_ext()`
 
-Read from the external Bosch BMP280 digital temperature and pressure sensor over the SPI bus using a stack of bare-metal methods addressing the STM32 SPI2 peripheral block
+Read from the external Bosch BMP280 digital temperature and pressure sensor over the SPI bus using a stack of bare-metal methods addressing the STM32 SPI2 peripheral block.
 
-*Note: the calculation of temperature and pressure from the raw readings is a complex computation that needs to take into account the calibration values that are pre-programmed into the device, so this procedure is not implemented and raw readings only are returned*
+*Note: the calculation of temperature and pressure from the raw readings is a complex computation that needs to take into account the calibration values that are pre-programmed into the device, so this procedure is not implemented and raw readings only are returned.*
 
 ### Time-critical section (inline assembler)
 
