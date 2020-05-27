@@ -1,6 +1,6 @@
-# Example code using `iol.py` module
+﻿# Example code using `iol.py` module
 
-**Note: This document is currently being created and so is not yet suitable for reference.**
+This is the user manual for the example code (modules and methods) that I am offering as immediately usable (on a Pyboard v1.1) examples of "bare-metal" access to STM32 peripheral registers using the `iol.py` module.
 
 # Quick summary
 
@@ -51,9 +51,9 @@ I was able to add all of the necessary external components for my experiments by
 
 # Example modules and external methods
 
-The following modules and methods are offered as immediately usable (on a Pyboard v1.1) examples of "bare-metal" access to STM32 memory locations and peripheral registers using the `iol.py` module.  The module numbering follows the relevant sections of the Udemy ARM Cortex course.
+The following modules and methods are offered as immediately usable (on a Pyboard v1.1) examples of "bare-metal" access to STM32 peripheral registers using the `iol.py` module.  The module numbering follows the relevant sections of the Udemy ARM Cortex course.
 
-## [`clocks.py`](/clocks.py) — calculate Pyboard clock frequencies from first principles
+## [`clocks.py`](/clocks.py) — Calculate Pyboard clock frequencies from first principles
 
 Calculate the Pyboard clock and bus frequencies from the external crystal value and the STM32 device register configuration settings, then compare these with the values reported by the system
 
@@ -66,7 +66,7 @@ To run this package (occurs automatically on `import`):
 
 None
 
-## [`c3.py`](/c3.py) — examples inspired by Section 3 (GPIO) of Udemy ARM Cortex course
+## [`c3.py`](/c3.py) — General Purpose Input/Output (GPIO)
 
 Before running each of the standalone examples in this package:
 
@@ -89,11 +89,11 @@ Flash the red LED on and off five times by toggling the ODR bit (exclusive-or)
 
 Flash the red LED on and off five times using the BSRR registers to set and reset the I/O port bit
 
-`c3.led_button()`
+### `c3.led_button()`
 
 Reflect the state of the user button on the red LED (pressed = on) in a continuous loop (interrupt with `<CONTROL-C>`)
 
-## [`c4.py`](/c4.py) — examples inspired by Section 4 (USART) of Udemy ARM Cortex course
+## [`c4.py`](/c4.py) — Universal Asychronous Receiver Transmitter (UART)
 
 Before running each of the standalone examples in this package:
 
@@ -116,7 +116,7 @@ Send 5000 serial characters at 4800 baud over PA0, measuring the time taken (plu
 
 Send 24 lines of alphanumeric characters serially at 4800 baud over PA0, displaying the serial characters received on PA1 (should echo the transmission)
 
-## [`c5.py`](/c5.py) — examples inspired by Section 5 (Timers) of Udemy ARM Cortex course
+## [`c5.py`](/c5.py) — General Purpose Timers
 
 Before running each of the standalone examples in this package:
 
@@ -127,15 +127,15 @@ Before running each of the standalone examples in this package:
 
 For `timer_capture()` only — LED via series resistor (e.g. 330 ohm) to ground from X1 (PA0) and "loop-back" connection from X1 to Y1 (PC6) via series resistor (e.g. 1k) or jumper wire
 
-### 'c5.timer_basic()`
+### `c5.timer_basic()`
 
 Set up Timer 2 to expire at 1.0 second intervals, toggling the state of the yellow LED manually when this happens, and measuring the total time taken for ten cycles
 
-### `c5.timer_compare()'
+### `c5.timer_compare()`
 
 Set up Timer 2 to run autonomously with a 1.0 second output compare period, with the compare match toggling the state of the yellow LED automatically — note this this will continue to occur even after the example has finished running!
 
-### 'c5.timer_capture()'
+### `c5.timer_capture()`
 
 Set up Timer 2 to run autonomously with a 1.0 second output compare period, with the compare match toggling the state of the external PA0 output automatically, and Timer 3 to run in input capture mode on the linked external input PC6, measuring the times at which changes occur and displaying the intervals
 
@@ -143,7 +143,7 @@ Set up Timer 2 to run autonomously with a 1.0 second output compare period, with
 
 Sets up Timer 2 to provide a PWM output to the external PA0 output, varying the brightness of the external LED according to the inputted percentage value
 
-## [`c6.py`](/c6.py) — examples inspired by Section 6 (Interrupts) of Udemy ARM Cortex course
+## [`c6.py`](/c6.py) — Interrupts
 
 *Note: It is not readily possible to create "bare-metal" interrupt handlers in Micropython, so these examples either use the Micropython "callback" mechanism when available (external interrupt and timer) or just report the way that interrupts are set up by Micropython (USART)*
 
@@ -168,7 +168,7 @@ Set up an interrupt callback handler (in Micropython) for Timer 2 expiry, then d
 
 Set up the UART 4 in Micropython, then prompt for activity over the serial port and report on the states of the STM32 peripheral registers associated with the UART (note: interrupt callback handlers are not available for UARTs in the STM32 version of Micropython)
 
-## [`c7.py`](/c7.py) — examples inspired by Section 7 (ADC) of Udemy ARM Cortex course
+## [`c7.py`](/c7.py) — Analog-to-Digital Converter (ADC)
 
 Before running each of the standalone examples in this package:
 
@@ -195,7 +195,7 @@ Set up ADC1 to read the internal temperature reading from the CPU, then set up T
 
 Section 8 of the Udemy ARM Cortex course requires an external Liquid Crystal Display (LCD), which I did not have.
 
-## [`c9.py`](/c9.py) — examples inspired by Section 9 (I2C) of Udemy ARM Cortex course
+## [`c9.py`](/c9.py) — Inter-Integrated Circuit (I2C) bus
 
 Before running each of the standalone examples in this package:
 
@@ -226,7 +226,7 @@ Read from the external Bosch BMP280 digital temperature and pressure sensor over
 
 *Note: the calculation of temperature and pressure from the raw readings is a complex computation that needs to take into account the calibration values that are pre-programmed into the device, so this procedure is not implemented and raw readings only are returned*
 
-## [`c10.py`](/c10.py) — example inspired by Section 10 (SPI) of Udemy ARM Cortex course
+## [`c10.py`](/c10.py) — Serial Peripheral Interface (SPI) bus
 
 *Note: This example exposes the limitations of "bare-metal" routines running on top of Micropython, as the SPI transmit/receive functions are unable to keep up with the high speed of the SPI bus, even at its slowest setting (160 KHz on the Pyboard), as flagged by the receiver overrun errors.  However, a workaround has been achieved using inline assembler code for the time-critical part of these functions to yield an execution speed that is able to keep up with the SPI bus even at its maximum speed (21 MHz on the Pyboard).*
 
@@ -247,7 +247,7 @@ Read from the external Bosch BMP280 digital temperature and pressure sensor over
 
 *Note: the calculation of temperature and pressure from the raw readings is a complex computation that needs to take into account the calibration values that are pre-programmed into the device, so this procedure is not implemented and raw readings only are returned*
 
-### Time-critical section
+### Time-critical section (inline assembler)
 
 The inline assembly code method `spi_tx_rx_asm()` contains the speed-critical element for handling the SPI bus in real time.  Note that receiver overrun errors may still occur if a Micropython system interrupt occurs during its execution.  This could be avoided by disabling interrupts at the start of this function and re-enabling them afterwards, but at the cost of introducing undesirable extra latency into the rest of the system.  If this approach is chosen, then it may be prudent to run the SPI bus at the highest possible speed (consistent with the hardware capabilities) so that the latency introduced by temporary disabling of interrupts is minimised.
 
