@@ -226,7 +226,7 @@ For `i2c_test_ext()` only — Bosch BMP280 digital temperature and pressure sens
 
 ### `c9.i2c_test_pyb()`
 
-Test the inbuilt accelerometer on the Pyboard using Micropython (pyb) I2C calls — NOT bare-metal methods!
+Initialise the I2C bus on the Pyboard using Micropython (pyb) I2C calls (NOT bare-metal methods), dump the status of the relevant GPIO and I2C peripheral registers, display the configured values of the I2C bus parameters, then test for the presence of the internal I2C accelerometer.
 
 *Note: the accelerometer does not respond at all until powered from the PB5 output line, and then does not return valid readings until configured correctly.*
 
