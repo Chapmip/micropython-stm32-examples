@@ -1,4 +1,4 @@
-# Example code using `iol.py` module
+﻿# Example code using `iol.py` module
 
 This is the user manual for the example Micropython code (modules and methods) that I am offering as immediately usable (on a Pyboard v1.1) examples of "bare-metal" access to STM32 peripheral registers using the `iol.py` module.
 
@@ -134,6 +134,18 @@ Send 5000 serial characters at 4800 baud over PA0, measuring the time taken (plu
 
 Send 24 lines of alphanumeric characters serially at 4800 baud over PA0, displaying the serial characters received on PA1 (should echo the transmission).
 
+### Output from logic analyser
+
+To confirm correct operation at a hardware level, I attached a logic analyser to the X1 (PA0) pin on the Pyboard to monitor the TX output from the UART.
+
+Here is a signal plot and timing calculation demonstrating that the UART is configured properly for 4800 baud operation:
+
+![Logic analyser output showing timing for one asynchronous serial output character](/photos/c4-uart-signal-capture-1.png?raw=true "Logic analyser output showing timings of one asynchronous serial output character")
+
+Here is a snapshot of output from the `c4.rx_test()` example:
+
+![Logic analyser output showing snapshot of serial output from rx_test example](/photos/c4-uart-signal-capture-2.png?raw=true "Logic analyser output showing snapshot of serial output from rx_test example")
+
 ## [`c5.py`](/c5.py) — General Purpose Timers
 
 Before running each of the standalone examples in this package:
@@ -244,6 +256,14 @@ Read from the external Bosch BMP280 digital temperature and pressure sensor over
 
 *Note: the calculation of temperature and pressure from the raw readings is a complex computation that needs to take into account the calibration values that are pre-programmed into the device, so this procedure is not implemented and raw readings only are returned.*
 
+### Output from logic analyser
+
+To confirm correct operation at a hardware level, I attached a logic analyser to the X9 (SCL) and X10 (SDA) pins on the Pyboard to monitor the I2C bus activity.
+
+Here is a snapshot of output from an I2C bus scan, showing an I2C slave device at address 0x3C responding (A = Acknowledgement) to a scan of its address, whilst adjacent addresses (0x3B and 0x3D) yield no response (N = Negative Acknowledgement — NACK):
+
+![Logic analyser output showing I2C slave device responding to a scan of its address](/photos/c9-i2c-signal-capture-1.png?raw=true "Logic analyser output showing I2C slave device responding to a scan of its address")
+
 ## [`c10.py`](/c10.py) — Serial Peripheral Interface (SPI) bus
 
 *Note: This example exposes the limitations of "bare-metal" routines running on top of Micropython, as the SPI transmit/receive functions are unable to keep up with the high speed of the SPI bus, even at its slowest setting (160 KHz on the Pyboard), as flagged by the receiver overrun errors.  However, a workaround has been achieved using inline assembler code for the time-critical part of these functions to yield an execution speed that is able to keep up with the SPI bus even at its maximum speed (21 MHz on the Pyboard).*
@@ -268,6 +288,18 @@ Read from the external Bosch BMP280 digital temperature and pressure sensor over
 ### Time-critical section (inline assembler)
 
 The inline assembly code method `spi_tx_rx_asm()` contains the speed-critical element for handling the SPI bus in real time.  Note that receiver overrun errors may still occur if a Micropython system interrupt occurs during its execution.  This could be avoided by disabling interrupts at the start of this function and re-enabling them afterwards, but at the cost of introducing undesirable extra latency into the rest of the system.  If this approach is chosen, then it may be prudent to run the SPI bus at the highest possible speed (consistent with the hardware capabilities) so that the latency introduced by temporary disabling of interrupts is minimised.
+
+### Output from logic analyser
+
+To confirm correct operation at a hardware level of the `c10.spi_test_ext()` example, I attached a logic analyser to the Y5 (/SS — CSB on slave), Y6 (SCK), Y7 (MISO — SDO on slave) and Y8 (MOSI — SDI on slave) pins on the Pyboard to monitor the SPI bus activity.
+
+Here is the BMP280 sensor responding to an SPI bus request for its device ID (command 0xD0) with the expected value 0x58:
+
+![Logic analyser output showing SPI slave device responding to a request for its device ID](/photos/c10-spi-signal-capture-1.png?raw=true "Logic analyser output showing SPI slave device responding to a request for its device ID")
+
+Here is the BMP280 sensor responding to a series of SPI bus requests for its temperature and pressure readings (two bytes each):
+
+![Logic analyser output showing SPI slave device responding to a series of requests](/photos/c10-spi-signal-capture-2.png?raw=true "Logic analyser output showing SPI slave device responding to a series of requests")
 
 # References
 
